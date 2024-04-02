@@ -12,7 +12,7 @@ from sravni import sravni_excel
 
 st.markdown('<h2>Рейтинг МФО на сайтах Banki.ru и Sravni.ru</h2>', unsafe_allow_html=True)
 my_bar = st.progress(0)
-progress_text = "Operation in progress. Please wait."
+progress_text = "Коллега, возможно тебе покажется, что сайт долго обновляется, но это все равно быстрее чем твой компьютер! 😉"
 if st.button('Refresh'):
     my_bar = st.progress(0, text=progress_text)
 
