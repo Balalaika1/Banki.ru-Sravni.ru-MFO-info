@@ -32,55 +32,81 @@ if st.button('Banki.ru'):
     n = 1
     # Создаем цикл для перечислени явсех компаний
     for i in companies:
-        print(f'{n} / {len(companies)}')
-        data = requests.get(f'{url}{i}')
-        site = data.text
-        site = BeautifulSoup(site,'lxml')
-
+        try:
+            print(f'{n} / {len(companies)}')
+            data = requests.get(f'{url}{i}')
+            site = data.text
+            site = BeautifulSoup(site,'lxml')
+        except:
+            pass
+        
+        
         # выгружаем название компании
-        company_name = site.find(class_ = 'CompanyHeadstyled__TextHeaderInnerStyled-sc-1co238g-4 gcdYkQ')
-        table_names['company_name'].append(company_name.text.replace('Отзывы клиентов МФО ',''))
-
+        try:
+            company_name = site.find(class_ = 'CompanyHeadstyled__TextHeaderInnerStyled-sc-1co238g-4 gcdYkQ')
+            table_names['company_name'].append(company_name.text.replace('Отзывы клиентов МФО ',''))
+        except:
+            table_names['company_name'].append("Нет данных")
         # Основной рейтинг
-        main_rait = site.find(class_ = 'TextResponsive__sc-hroye5-0 cvpJFV RatingsBadgestyled__StyledBadgeTitle-sc-13iioj7-1 hdjwXJ')
-        table_names['main_rait'].append(float(main_rait.text))
-
+        try:
+            main_rait = site.find(class_ = 'TextResponsive__sc-hroye5-0 cvpJFV RatingsBadgestyled__StyledBadgeTitle-sc-13iioj7-1 hdjwXJ')
+            table_names['main_rait'].append(float(main_rait.text))
+        except:
+            table_names['main_rait'].append("Нет данных")
         # Место
-        position = site.find_all(class_ = 'TextResponsive__sc-hroye5-0 yFKzy')
-        table_names['position'].append(int(extract_digits(position[0].text)))
-
+        try:
+            position = site.find_all(class_ = 'TextResponsive__sc-hroye5-0 yFKzy')
+            table_names['position'].append(int(extract_digits(position[0].text)))
+        except:
+            table_names['position'].append("Нет данных")
         # Отзывы
-        review = site.find_all(class_ = 'TextResponsive__sc-hroye5-0 yFKzy')
-        table_names['review'].append(int(extract_digits(review[1].text)))
-
+        try:
+            review = site.find_all(class_ = 'TextResponsive__sc-hroye5-0 yFKzy')
+            table_names['review'].append(int(extract_digits(review[1].text)))
+        except:
+            table_names['review'].append("Нет данных")
         # Ответы
-        answer = site.find_all(class_ = 'TextResponsive__sc-hroye5-0 yFKzy')
-        table_names['answer'].append(int(extract_digits(answer[2].text)))
-
+        try:
+            answer = site.find_all(class_ = 'TextResponsive__sc-hroye5-0 yFKzy')
+            table_names['answer'].append(int(extract_digits(answer[2].text)))
+        except:
+            table_names['answer'].append("Нет данных")
         # Позитивные отзывы
-        positive_reviews = site.find_all(class_ = 'TextResponsive__sc-hroye5-0 fuLnVY')
-        table_names['positive_reviews'].append(float(extract_digits(positive_reviews[0].text)))
-
+        try:
+            positive_reviews = site.find_all(class_ = 'TextResponsive__sc-hroye5-0 fuLnVY')
+            table_names['positive_reviews'].append(float(extract_digits(positive_reviews[0].text)))
+        except:
+            table_names['positive_reviews'].append("Нет данных")
         # Негативные отзывы
-        negative_reviews = site.find_all(class_ = 'TextResponsive__sc-hroye5-0 hsovst')
-        table_names['negative_reviews'].append(float(extract_digits(negative_reviews[0].text)))
-
+        try:
+            negative_reviews = site.find_all(class_ = 'TextResponsive__sc-hroye5-0 hsovst')
+            table_names['negative_reviews'].append(float(extract_digits(negative_reviews[0].text)))
+        except:
+            table_names['negative_reviews'].append("Нет данных")
         # Быстрая выдача
-        fast_issuance = site.find_all(class_ = 'TextResponsive__sc-hroye5-0 bILYor')
-        table_names['fast_issuance'].append(float(extract_digits(fast_issuance[0].text)))
-
+        try:
+            fast_issuance = site.find_all(class_ = 'TextResponsive__sc-hroye5-0 bILYor')
+            table_names['fast_issuance'].append(float(extract_digits(fast_issuance[0].text)))
+        except:
+            table_names['fast_issuance'].append("Нет данных")
         # Вежливые сотрудники
-        good_employee = site.find_all(class_ = 'TextResponsive__sc-hroye5-0 bILYor')
-        table_names['good_employee'].append(float(extract_digits(good_employee[1].text)))
-
+        try:
+            good_employee = site.find_all(class_ = 'TextResponsive__sc-hroye5-0 bILYor')
+            table_names['good_employee'].append(float(extract_digits(good_employee[1].text)))
+        except:
+            table_names['good_employee'].append("Нет данных")
         # Прозрачные условия
-        transparent_conditions = site.find_all(class_ = 'TextResponsive__sc-hroye5-0 bILYor')
-        table_names['transparent_conditions'].append(float(extract_digits(transparent_conditions[2].text)))
-
+        try:
+            transparent_conditions = site.find_all(class_ = 'TextResponsive__sc-hroye5-0 bILYor')
+            table_names['transparent_conditions'].append(float(extract_digits(transparent_conditions[2].text)))
+        except:
+            table_names['transparent_conditions'].append("Нет данных")
         # Удобство приложения, сайта
-        convenience_application = site.find_all(class_ = 'TextResponsive__sc-hroye5-0 bILYor')
-        table_names['convenience_application'].append(float(extract_digits(convenience_application[3].text)))
-
+        try:
+            convenience_application = site.find_all(class_ = 'TextResponsive__sc-hroye5-0 bILYor')
+            table_names['convenience_application'].append(float(extract_digits(convenience_application[3].text)))
+        except:
+            table_names['convenience_application'].append("Нет данных")
         # Дата выгрузки
         table_names['date'].append(current_datetime)
 
