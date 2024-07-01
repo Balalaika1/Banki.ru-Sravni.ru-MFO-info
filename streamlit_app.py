@@ -49,66 +49,70 @@ if st.button('Banki.ru'):
             table_names['company_name'].append("Нет данных")
         # Основной рейтинг
         try:
-            main_rait = site.find(class_ = 'TextResponsive__sc-hroye5-0 cvpJFV RatingsBadgestyled__StyledBadgeTitle-sc-13iioj7-1 hdjwXJ')
+            main_rait = site.find(class_ = 'Text__sc-vycpdy-0 bNfHJq RatingsBadgestyled__StyledBadgeTitle-sc-13iioj7-1 hdjwXJ')
             table_names['main_rait'].append(float(main_rait.text))
         except:
             table_names['main_rait'].append("Нет данных")
         # Место
         try:
-            position = site.find_all(class_ = 'TextResponsive__sc-hroye5-0 yFKzy')
+            position = site.find_all(class_ = 'Text__sc-vycpdy-0 jZylFz')
             table_names['position'].append(int(extract_digits(position[0].text)))
         except:
             table_names['position'].append("Нет данных")
         # Отзывы
         try:
-            review = site.find_all(class_ = 'TextResponsive__sc-hroye5-0 yFKzy')
+            review = site.find_all(class_ = 'Text__sc-vycpdy-0 jZylFz')
             table_names['review'].append(int(extract_digits(review[1].text)))
         except:
             table_names['review'].append("Нет данных")
         # Ответы
         try:
-            answer = site.find_all(class_ = 'TextResponsive__sc-hroye5-0 yFKzy')
+            answer = site.find_all(class_ = 'Text__sc-vycpdy-0 jZylFz')
             table_names['answer'].append(int(extract_digits(answer[2].text)))
         except:
             table_names['answer'].append("Нет данных")
         # Позитивные отзывы
         try:
-            positive_reviews = site.find_all(class_ = 'TextResponsive__sc-hroye5-0 fuLnVY')
+            positive_reviews = site.find_all(class_ = 'Text__sc-vycpdy-0 gMyhnj')
             table_names['positive_reviews'].append(float(extract_digits(positive_reviews[0].text)))
         except:
             table_names['positive_reviews'].append("Нет данных")
         # Негативные отзывы
         try:
-            negative_reviews = site.find_all(class_ = 'TextResponsive__sc-hroye5-0 hsovst')
+            negative_reviews = site.find_all(class_ = 'Text__sc-vycpdy-0 eVmhAG')
             table_names['negative_reviews'].append(float(extract_digits(negative_reviews[0].text)))
         except:
             table_names['negative_reviews'].append("Нет данных")
         # Быстрая выдача
         try:
-            fast_issuance = site.find_all(class_ = 'TextResponsive__sc-hroye5-0 bILYor')
+            fast_issuance = site.find_all(class_ = 'Text__sc-vycpdy-0 ceYcWs')
             table_names['fast_issuance'].append(float(extract_digits(fast_issuance[0].text)))
         except:
             table_names['fast_issuance'].append("Нет данных")
         # Вежливые сотрудники
         try:
-            good_employee = site.find_all(class_ = 'TextResponsive__sc-hroye5-0 bILYor')
+            good_employee = site.find_all(class_ = 'Text__sc-vycpdy-0 ceYcWs')
             table_names['good_employee'].append(float(extract_digits(good_employee[1].text)))
         except:
             table_names['good_employee'].append("Нет данных")
         # Прозрачные условия
         try:
-            transparent_conditions = site.find_all(class_ = 'TextResponsive__sc-hroye5-0 bILYor')
+            transparent_conditions = site.find_all(class_ = 'Text__sc-vycpdy-0 ceYcWs')
             table_names['transparent_conditions'].append(float(extract_digits(transparent_conditions[2].text)))
         except:
             table_names['transparent_conditions'].append("Нет данных")
         # Удобство приложения, сайта
         try:
-            convenience_application = site.find_all(class_ = 'TextResponsive__sc-hroye5-0 bILYor')
+            convenience_application = site.find_all(class_ = 'Text__sc-vycpdy-0 ceYcWs')
             table_names['convenience_application'].append(float(extract_digits(convenience_application[3].text)))
         except:
             table_names['convenience_application'].append("Нет данных")
-        # Дата выгрузки
-        table_names['date'].append(current_datetime)
+
+        try:
+            convenience_application = site.find_all(class_ = 'TextResponsive__sc-hroye5-0 bILYor')
+            table_names['date'].append(datetime.now())
+        except:
+            table_names['date'].append("Нет данных")
 
         my_bar.progress(n, text=progress_text)
 
