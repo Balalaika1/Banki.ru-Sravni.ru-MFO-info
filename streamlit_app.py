@@ -43,7 +43,7 @@ if st.button('Banki.ru'):
         
         # выгружаем название компании
         try:
-            company_name = site.find(class_ = 'CompanyHeadstyled__TextHeaderInnerStyled-sc-1co238g-4 gcdYkQ')
+            company_name = site.find(class_ = 'CompanyHeadstyled__TextHeaderInnerStyled-sc-1co238g-4')
             table_names['company_name'].append(company_name.text.replace('Отзывы клиентов МФО ',''))
         except:
             table_names['company_name'].append("Нет данных")
