@@ -49,7 +49,7 @@ if st.button('Banki.ru'):
             table_names['company_name'].append("Нет данных")
         # Основной рейтинг
         try:
-            main_rait = site.find(class_ = 'Text__sc-vycpdy-0 jZylFz')
+            main_rait = site.find(class_ = 'Text__sc-vycpdy-0 bNfHJq RatingsBadgestyled__StyledBadgeTitle-sc-13iioj7-1 dyVhnJ')
             table_names['main_rait'].append(float(main_rait.text))
         except:
             table_names['main_rait'].append("Нет данных")
