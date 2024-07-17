@@ -42,17 +42,17 @@ if st.button('Banki.ru'):
         
         
         # выгружаем название компании
+        #Поиск всех div в class которых есть 'CompanyHeadstyled' 
         try:
-            company_name = site.find(class_ = 'CompanyHeadstyled__TextHeaderInnerStyled-sc-1co238g-4')
-            table_names['company_name'].append(company_name.text.replace('Отзывы клиентов МФО ',''))
+            company_name = site.select('div[class*=CompanyHeadstyled]')[-1].text.replace('Отзывы клиентов МФО ', '')
         except:
-            table_names['company_name'].append("Нет данных")
-        # Основной рейтинг
+            company_name = "Нет данных"
+
+        #Поиск всех div в class которых есть 'RatingsBadgestyled' 
         try:
-            main_rait = site.find(class_ = 'Text__sc-vycpdy-0 bNfHJq RatingsBadgestyled__StyledBadgeTitle-sc-13iioj7-1 dyVhnJ')
-            table_names['main_rait'].append(float(main_rait.text))
+            main_rait = float(site.select('div[class*=RatingsBadgestyled]')[1].text)
         except:
-            table_names['main_rait'].append("Нет данных")
+            main_rait = "Нет данных"
         # Место
         try:
             position = site.find_all(class_ = 'Text__sc-vycpdy-0 jZylFz')
